@@ -1,6 +1,6 @@
-# TaskFlow - Full Stack Project Management System
+# Full Stack Project Management System
 
-TaskFlow is a modern full-stack web application designed for organizing projects, managing tasks, tracking progress, and visualizing key performance metrics via an interactive dashboard.
+This full-stack web application designed for organizing projects, managing tasks, tracking progress, and visualizing key performance metrics via an interactive dashboard.
 
 ---
 
@@ -22,13 +22,13 @@ DB_TYPE=mysql
 DB_HOST=localhost
 DB_PORT=3306
 DB_USER=root
-DB_PASSWORD=root
+DB_PASSWORD=xxxxx
 DB_NAME=project_management
 NODE_ENV=development
 ```
 
 ### 2. Importing MySQL Schema
-The relational database schema is stored in [`schema.sql`](file:///c:/Users/devi/Desktop/assignment/schema.sql).
+
 
 To import the schema into your MySQL server:
 ```bash
@@ -60,35 +60,11 @@ npm run dev
 ```
 The React frontend application will launch on `http://localhost:3000`.
 
----
-
-## Entity Relationship Model & Foreign Keys
-
-```
-+--------------------+           +-----------------------+           +--------------------+
-|       USERS        | 1       * |       PROJECTS        | 1       * |       TASKS        |
-+--------------------+-----------+-----------------------+-----------+--------------------+
-| id (PK)            |           | id (PK)               |           | id (PK)            |
-| full_name          |           | user_id (FK)          |           | project_id (FK)    |
-| email (UNIQUE)     |           | project_name          |           | user_id (FK)       |
-| password (HASHED)  |           | description           |           | task_name          |
-| created_at         |           | status                |           | description        |
-+--------------------+           | start_date            |           | priority           |
-                                 | end_date              |           | status             |
-                                 | created_at            |           | due_date           |
-                                 +-----------------------+           | created_at         |
-                                                                     +--------------------+
 ```
 
-- **Foreign Keys**:
-  - `projects.user_id` -> `users.id` (`ON DELETE CASCADE`)
-  - `tasks.project_id` -> `projects.id` (`ON DELETE CASCADE`)
-  - `tasks.user_id` -> `users.id` (`ON DELETE CASCADE`)
-
----
 
 ## API Documentation
-See detailed REST API specifications in [`API_DOCUMENTATION.md`](file:///c:/Users/devi/Desktop/assignment/API_DOCUMENTATION.md).
+See detailed REST API specifications in API_DOCUMENTATION.md
 
 ---
 
