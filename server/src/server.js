@@ -17,6 +17,9 @@ const PORT = process.env.PORT || 5000;
 app.use(cors());
 app.use(express.json());
 
+// Initialize DB safely
+initDB().catch(err => console.error('DB Init Error:', err));
+
 // Request logging middleware
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.originalUrl}`);
@@ -35,7 +38,7 @@ app.get('/api/health', (req, res) => {
 });
 
 // Global 404 Route handler
-app.use((req, res) => {
+app.use('/api/*', (req, res) => {
   res.status(404).json({ error: 'Endpoint not found.' });
 });
 
@@ -47,13 +50,10 @@ app.use((err, req, res, next) => {
   });
 });
 
-// Initialize database and start server
-initDB()
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server listening on port ${PORT} in ${process.env.NODE_ENV || 'development'} mode.`);
-    });
-  })
-  .catch((err) => {
-    console.error('Failed to initialize database:', err);
+if (process.env.NODE_ENV !== 'production' || !process.env.VERCEL) {
+  app.listen(PORT, () => {
+    console.log(`Server listening on port ${PORT}`);
   });
+}
+
+module.exports = app;
