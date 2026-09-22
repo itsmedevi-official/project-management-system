@@ -33,7 +33,7 @@ NODE_ENV=development
 To import the schema into your MySQL server:
 ```bash
 # In MySQL Workbench or CLI:
-mysql -u root -proot < schema.sql
+mysql -u root -p project_management < schema.sql
 ```
 
 ---
