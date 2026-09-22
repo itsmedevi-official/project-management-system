@@ -17,7 +17,7 @@ This full-stack web application designed for organizing projects, managing tasks
 ### 1. Database Credentials (`server/.env`)
 ```env
 PORT=5000
-JWT_SECRET=super_secret_jwt_key_2026_project_management
+JWT_SECRET=xxxxx
 DB_TYPE=mysql
 DB_HOST=localhost
 DB_PORT=3306
